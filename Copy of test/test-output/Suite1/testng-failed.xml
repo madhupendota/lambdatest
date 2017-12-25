@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite1]">
+  <parameter name="password" value="Madhu12"/>
+  <parameter name="username" value="Madhu"/>
+  <test name="Regression1(failed)">
+    <parameter name="password1" value="Madhu12"/>
+    <classes>
+      <class name="pkg.testOnlyOnClass">
+        <methods>
+          <include name="bTest"/>
+          <include name="a2Class"/>
+          <include name="test3"/>
+          <include name="a1Class"/>
+          <include name="aTest"/>
+          <include name="aClass"/>
+          <include name="bClass"/>
+        </methods>
+      </class> <!-- pkg.testOnlyOnClass -->
+    </classes>
+  </test> <!-- Regression1(failed) -->
+</suite> <!-- Failed suite [Suite1] -->
