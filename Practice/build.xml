@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+   <project name="SeleniumSuit" default="run" basedir=".">
+   	<property name="src.dir" location="${basedir}/src" />
+   		<property name="classes.dir" value="${basedir}/classes"/>
+   	<property name="build.dir" value="${basedir}/build"/>
+   	<property name="lib.dir" value="${basedir}/lib"/>
+	<property name="jar.dir" value="${basedir}/jar"/>
+	<property name="main-class"  value="mainFile.getScenarios"/>
+
+<path id="Libraries">
+		<pathelement path="${lib.dir}\commons-codec-1.10.jar" />
+		<pathelement path="${lib.dir}\commons-collections4-4.1.jar" />
+		<pathelement path="${lib.dir}\commons-logging-1.2.jar" />
+		<pathelement path="${lib.dir}\curvesapi-1.04.jar" />
+		<pathelement path="${lib.dir}\junit-4.12.jar" />
+		<!--<pathelement path="${lib.dir}\bin" /> !-->
+		<pathelement path="${lib.dir}\log4j-1.2.17.jar" />
+		<pathelement path="${lib.dir}\poi-3.15.jar" />
+		<pathelement path="${lib.dir}\poi-examples-3.15.jar" />
+		<pathelement path="${lib.dir}\poi-excelant-3.15.jar" />
+		<pathelement path="${lib.dir}\poi-ooxml-3.15.jar" />
+		<pathelement path="${lib.dir}\poi-ooxml-schemas-3.15.jar" />
+		<pathelement path="${lib.dir}\poi-scratchpad-3.15.jar" />
+		<pathelement path="${lib.dir}\selenium-server-standalone-3.0.1.jar" />
+		<pathelement path="${lib.dir}\xmlbeans-2.6.0.jar" />
+		
+	</path>
+
+
+
+   <target name="info">
+      <echo>Hello World - Welcome to Apache Ant!</echo>
+		<echo>${src.dir}</echo>
+   	<echo> ****End Of Execution***</echo>
+   </target>
+   
+<target name="init">
+        <mkdir dir="${classes.dir}"/>
+	<mkdir dir="${jar.dir}"/>
+        <tstamp>
+            <format property="timestamp" pattern="dd-MM-yyyy_(HH-mm-ss)"/>
+        </tstamp>
+    </target>
+
+<target name="clean">
+        <delete dir="${classes.dir}"/>
+	<delete dir="${jar.dir}"/>
+    </target>
+   
+ <target name="compile" depends="clean,init">
+        <echo message="****in compile****"/>
+		<echo message="ANT_HOME ++"> ${ant.home}</echo>
+		<echo message="JAVA_HOME ++"> ${java.home}</echo>
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" classpathref="Libraries"/>
+    </target>
+<target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+           <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target> 
+
+<target name="run" depends="jar">
+        <echo message="****in run****"/>
+
+        <!--<java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>!-->
+		<java fork="true" classname="${main-class}">
+            <classpath>
+            	<path refid="Libraries"/>
+                <path location="${jar.dir}/${ant.project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+</project>
