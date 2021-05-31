@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <test name="Test">
+    <packages>
+      <package name="com.lambdatest"/>
+    </packages>
+    <classes>
+      <class name="com.lambdatest.LambdaTest_Chrome"/>
+      <class name="com.lambdatest.LambdaTest_Safari"/>
+      <class name="com.lambdatest.LambdaTest_Sample"/>
+    </classes>
+  </test> <!-- Test -->
+  <test name="Test(failed)" parallel="methods">
+    <classes>
+      <class name="com.lambdatest.LambdaTest_Chrome">
+        <methods>
+          <include name="formPageValidation"/>
+          <include name="submitForm"/>
+          <include name="loginTest"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.lambdatest.LambdaTest_Chrome -->
+      <class name="com.lambdatest.LambdaTest_Safari">
+        <methods>
+          <include name="loginTest"/>
+          <include name="afterClass"/>
+          <include name="setUp"/>
+          <include name="formPageValidation"/>
+          <include name="submitForm"/>
+        </methods>
+      </class> <!-- com.lambdatest.LambdaTest_Safari -->
+      <class name="com.lambdatest.LambdaTest_Sample">
+        <methods>
+          <include name="afterClass"/>
+          <include name="loginTest"/>
+          <include name="beforeClass"/>
+          <include name="formPageValidation"/>
+          <include name="submitForm"/>
+        </methods>
+      </class> <!-- com.lambdatest.LambdaTest_Sample -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
